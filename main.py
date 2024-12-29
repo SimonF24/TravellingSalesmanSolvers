@@ -1,10 +1,11 @@
 from typing import Literal
 
 from brute_force import brute_force_solver
+from genetic import genetic_solver
 from simulated_annealing import simulated_annealing_solver
 
 
-solver_to_use: Literal["brute_force", "simulated_annealing"] = "simulated_annealing"
+solver_to_use: Literal["brute_force", "genetic", "simulated_annealing"] = "genetic"
 
 
 if __name__ == "__main__":
@@ -20,6 +21,8 @@ if __name__ == "__main__":
     ]
     if solver_to_use == "brute_force":
         found_route, found_route_distance = brute_force_solver(cities)
+    elif solver_to_use == "genetic":
+        found_route, found_route_distance = genetic_solver(cities)
     elif solver_to_use == "simulated_annealing":
         found_route, found_route_distance = simulated_annealing_solver(cities)
     else:

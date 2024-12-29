@@ -6,7 +6,7 @@ from utils import get_route_distance
 
 
 def simulated_annealing_solver(
-    cities: List[Tuple[float, float]], initial_temp: float=100, max_iterations: int=1000,
+    cities: List[Tuple[float, float]], initial_temp: float=100, num_iterations: int=1000,
     cooling_rate: float=0.995, restart_after: int=50, restart_distance: float = 10,
     swap_neighboring: bool = True)-> Tuple[List[Tuple[float, float]], float]:
     """
@@ -16,7 +16,7 @@ def simulated_annealing_solver(
     params:
         cities - The cities to visit represented as a list of (x, y) coordinates
         initial_temp - The initial temperature for the simulated annealing
-        max_iterations - The maximum number of iterations to run the simulated annealing for
+        num_iterations - The number of iterations to run the simulated annealing for
         cooling_rate - The rate at which to cool the temperature
         restart_after - The number of iterations without improvement to restart the search
         restart_distance - The distance threshold to trigger a restart
@@ -32,7 +32,7 @@ def simulated_annealing_solver(
     current_route_distance = best_route_distance
     since_best = 0
     temperature = initial_temp
-    for i in range(max_iterations):
+    for i in range(num_iterations):
         # Swapping two cities in the route to generate a neighboring route
         if swap_neighboring:
             i1 = random.randint(0, len(cities) - 1)
