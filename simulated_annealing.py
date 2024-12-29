@@ -32,7 +32,7 @@ def simulated_annealing_solver(
     current_route_distance = best_route_distance
     since_best = 0
     temperature = initial_temp
-    for i in range(num_iterations):
+    for _ in range(num_iterations):
         # Swapping two cities in the route to generate a neighboring route
         if swap_neighboring:
             i1 = random.randint(0, len(cities) - 1)
@@ -70,5 +70,5 @@ def simulated_annealing_solver(
         
         # Lowering the temperature
         temperature *= cooling_rate
-        
-        return best_route, best_route_distance
+    
+    return best_route, best_route_distance

@@ -17,10 +17,10 @@ def genetic_solver(
         best_route, best_route_distance - The best route found and its distance
     """
     population = [random.sample(cities, len(cities)) for _ in range(population_size)]
-    for i in range(num_iterations):
+    for _ in range(num_iterations):
         population_additions = []
         # Mutate through swapping adjacent cities in the route
-        for j in range(num_mutations):
+        for _ in range(num_mutations):
             mutant = random.choice(population).copy()
             i1 = random.randint(0, len(cities) - 1)
             i2 = (i1 + 1) % len(cities)
@@ -28,7 +28,7 @@ def genetic_solver(
             population_additions.append(mutant)
         
         # Partially mapped crossover
-        for j in range(num_children):
+        for _ in range(num_children):
             i1, i2 = random.sample(range(len(cities) + 1), 2)
             if i1 > i2:
                 i1, i2 = i2, i1

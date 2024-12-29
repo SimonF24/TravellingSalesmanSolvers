@@ -9,3 +9,4 @@ Algorithms Implemented:
 - Approximate
   - Simulated Annealing
   - Genetic
+  - Tabu Search

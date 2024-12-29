@@ -3,9 +3,12 @@ from typing import Literal
 from brute_force import brute_force_solver
 from genetic import genetic_solver
 from simulated_annealing import simulated_annealing_solver
+from tabu import tabu_solver
 
 
-solver_to_use: Literal["brute_force", "genetic", "simulated_annealing"] = "genetic"
+solver_to_use: Literal[
+    "brute_force", "genetic", "simulated_annealing", "tabu"
+    ] = "simulated_annealing"
 
 
 if __name__ == "__main__":
@@ -25,6 +28,8 @@ if __name__ == "__main__":
         found_route, found_route_distance = genetic_solver(cities)
     elif solver_to_use == "simulated_annealing":
         found_route, found_route_distance = simulated_annealing_solver(cities)
+    elif solver_to_use == "tabu":
+        found_route, found_route_distance = tabu_solver(cities)
     else:
         raise ValueError(f"Unknown solver: {solver_to_use}")
     # Appending the first city to the end to close the route
