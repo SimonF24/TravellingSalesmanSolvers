@@ -9,7 +9,7 @@ from tabu import tabu_solver
 
 solver_to_use: Literal[
     "brute_force", "genetic", "held_karp", "simulated_annealing", "tabu"
-    ] = "held_karp"
+    ] = "genetic"
 
 
 if __name__ == "__main__":

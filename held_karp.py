@@ -17,6 +17,9 @@ def held_karp_solver(cities: List[Tuple[float, float]]) -> Tuple[List[Tuple[floa
     # This uses a binary representation of the set of visited cities that is 0 if a city isn't
     # present and 1 if it is. I'll show an equivalent set representation in the comments.
     
+    # A space for time tradeoff could be made by pre-computing all distances between cities
+    # and storing them. I don't here for simplicity.
+    
     # The starting city doesn't matter so we choose the first one, route here stores indices of cities
     min_distances = {}
     # The keys to min_distances are tuples containing (set of visited cities, last_city)

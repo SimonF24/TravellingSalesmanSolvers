@@ -1,7 +1,7 @@
 import random
 from typing import List, Tuple
 
-from utils import get_route_distance
+from utils import get_route_distance, quickselect
 
 def genetic_solver(
     cities: List[Tuple[float, float]], population_size: int = 3, num_iterations: int = 100,
@@ -19,7 +19,7 @@ def genetic_solver(
     population = [random.sample(cities, len(cities)) for _ in range(population_size)]
     for _ in range(num_iterations):
         population_additions = []
-        # Mutate through swapping adjacent cities in the route
+        # Mutate by swapping adjacent cities in the route
         for _ in range(num_mutations):
             mutant = random.choice(population).copy()
             i1 = random.randint(0, len(cities) - 1)
@@ -60,9 +60,9 @@ def genetic_solver(
             population_additions.append(child)
             
         population += population_additions
-        population.sort(key=lambda route: get_route_distance(route))
-        # This could be improved by partitioning e.g. quickselect, I'm omitting for simplicity,
-        # since the population size is small and since it isn't a focus of this project
-        population = population[:population_size]
-        
+        # Taking only the best routes for the next generation
+        population = quickselect(population, population_size)
+    
+    # Sorting the final population and returning the best route
+    population.sort(key=lambda route: get_route_distance(route))
     return population[0], get_route_distance(population[0])
