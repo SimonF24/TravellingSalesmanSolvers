@@ -1,9 +1,10 @@
+import random
 from typing import List, Tuple
 
 from utils import get_intercity_distance, get_route_distance
 
 
-def brute_force_solver(cities: List[Tuple[float, float]]) -> Tuple[List[int], float]:
+def brute_force_solver(cities: List[Tuple[float, float]]) -> Tuple[List[Tuple[float, float]], float]:
     """
     Solves the travelling salesman problem using brute force.
     
@@ -15,12 +16,15 @@ def brute_force_solver(cities: List[Tuple[float, float]]) -> Tuple[List[int], fl
     """
     best_distance = [get_route_distance(cities)]
     best_route = cities.copy()
-    backtrack(cities, [], set(), 0, best_route, best_distance)
+    random_city = random.choice(best_route) # The starting city doesn't matter so we choose a random one
+    backtrack(cities, [random_city], set([random_city]), 0, best_route, best_distance)
     return best_route, best_distance[0]
 
 
-def backtrack(cities: List[Tuple[float, float]], current_route: List[int], current_visited_cities: set[int],
-              current_distance: float, best_route: List[int], best_distance: List[float]) -> None:
+def backtrack(
+    cities: List[Tuple[float, float]], current_route: List[Tuple[float, float]],
+    current_visited_cities: set[Tuple[float, float]], current_distance: float,
+    best_route: List[Tuple[float, float]], best_distance: List[float]) -> None:
     """
     Recursive function to backtrack through all possible routes.
     

@@ -6,7 +6,7 @@ from utils import get_route_distance
 
 def tabu_solver(
     cities: List[Tuple[float, float]], num_iterations: int = 1000, num_neighbors: int = 3,
-    tabu_max_size: int = 10) -> Tuple[List[int], float]:
+    tabu_max_size: int = 10) -> Tuple[List[Tuple[float, float]], float]:
     """
     Solves the travelling salesman problem using a tabu search algorithm.
     
@@ -46,6 +46,6 @@ def tabu_solver(
             
         # Adding the current route to the tabu list
         tabu_list.append(current_route)
-        while len(tabu_list) >= tabu_max_size:
+        while len(tabu_list) > tabu_max_size:
             tabu_list.popleft()
     return best_route, best_route_distance

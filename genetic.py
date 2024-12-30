@@ -5,7 +5,7 @@ from utils import get_route_distance
 
 def genetic_solver(
     cities: List[Tuple[float, float]], population_size: int = 3, num_iterations: int = 100,
-    num_mutations: int = 3, num_children: int = 3) -> Tuple[List[int], float]:
+    num_mutations: int = 3, num_children: int = 3) -> Tuple[List[Tuple[float, float]], float]:
     """
     Solves the travelling salesman problem using a genetic algorithm.
     

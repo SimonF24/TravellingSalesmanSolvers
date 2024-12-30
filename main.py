@@ -2,13 +2,14 @@ from typing import Literal
 
 from brute_force import brute_force_solver
 from genetic import genetic_solver
+from held_karp import held_karp_solver
 from simulated_annealing import simulated_annealing_solver
 from tabu import tabu_solver
 
 
 solver_to_use: Literal[
-    "brute_force", "genetic", "simulated_annealing", "tabu"
-    ] = "simulated_annealing"
+    "brute_force", "genetic", "held_karp", "simulated_annealing", "tabu"
+    ] = "held_karp"
 
 
 if __name__ == "__main__":
@@ -26,6 +27,8 @@ if __name__ == "__main__":
         found_route, found_route_distance = brute_force_solver(cities)
     elif solver_to_use == "genetic":
         found_route, found_route_distance = genetic_solver(cities)
+    elif solver_to_use == "held_karp":
+        found_route, found_route_distance = held_karp_solver(cities)
     elif solver_to_use == "simulated_annealing":
         found_route, found_route_distance = simulated_annealing_solver(cities)
     elif solver_to_use == "tabu":
